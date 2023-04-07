@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletInstanciation
  */
-@WebServlet("/ServletInstanciation")
+@WebServlet("/listeEncheres")
 public class ServletInstanciation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class ServletInstanciation extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setAttribute("uneCle", "uneValeur"); 
-		RequestDispatcher rd =  request.getRequestDispatcher("/WEB-INF/jsp/ListEnchere.jsp");
+		RequestDispatcher rd =  request.getRequestDispatcher("WEB-INF/jsp/ListEnchere.jsp");
 		rd.forward(request, response);
 	}
 

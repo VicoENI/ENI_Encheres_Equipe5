@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<jsp:include page="fragments/header.jsp" flush="true" />
+<jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <jsp:include page="fragments/link.jsp" flush="true" />
+            <jsp:include page="../fragments/link.jsp" flush="true" />
         </div>
 	 </div>
       <form class="row g-3">
@@ -54,4 +54,4 @@
 	  </div>
 	</form>
 </div>
-<jsp:include page="fragments/footer.jsp" flush="true" />
+<jsp:include page="../fragments/footer.jsp" flush="true" />

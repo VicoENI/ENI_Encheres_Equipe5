@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="fragments/header.jsp" flush="true" />
+<jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <jsp:include page="fragments/link.jsp" flush="true" />
+            <jsp:include page="../fragments/link.jsp" flush="true" />
         </div>
         <div class="col-6">
             <a href="">S'inscrire - Se connecter</a>
@@ -29,7 +29,7 @@
                 <select name="categorie" id="categorie">
                     <option value="all">Toutes</option>
                     <c:forEach items="${categories}" var="option">
-                        <option value="<%= option.getId() %>"><%= option.getLibelle() %></option>
+                        <option value="<%-- <%= option.getId() %> --%>"><%-- <%= option.getLibelle() %> --%></option>
                     </c:forEach>
                 </select>
             </div>
@@ -53,4 +53,4 @@
         </div>
       </div>
 </div>
-<jsp:include page="fragments/footer.jsp" flush="true" />
+<jsp:include page="../fragments/footer.jsp" flush="true" />
