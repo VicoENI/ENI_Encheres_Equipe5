@@ -162,14 +162,6 @@ public class ArticleManager {
 			valide = false;
 			sb.append("Le prix de vente est obligatoire. ");
 		}
-		if (article.getUtilisateur() == null) {
-			valide = false;
-			sb.append("L'utilisateur est obligatoire. ");
-		}
-		if (article.getCategorie() == null) {
-			valide = false;
-			sb.append("La catégorie est obligatoire. ");
-		}
 		if (!valide) {
 			throw new BLLException(sb.toString());
 		}
