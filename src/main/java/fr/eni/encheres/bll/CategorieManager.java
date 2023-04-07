@@ -93,7 +93,6 @@ public class CategorieManager {
 		if (existingCategorie==null){
 			throw new BLLException("utilisateur inexistant.");
 		}
-		categorie.setCategorieId(existingCategorie.getNoCategorie());
 		try {
 			validerCategorie(categorie);
 			daoCategories.updateCategorieById(categorie.getNoCategorie(), categorie.getLibelle());

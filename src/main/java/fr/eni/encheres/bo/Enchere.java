@@ -3,82 +3,124 @@ package fr.eni.encheres.bo;
 //import java.sql.Date;
 import java.util.Date;
 
+/**
+ * Class representing the bid of an article
+ * @author BaptistePoupet
+ * @version 1.0
+ */
 public class Enchere {
-
-    private int id;
-    private int idArticle;
-    private int idUtilisateur;
-    private Date dateEnchere;
-    private int montantEnchere;
+    // Attributs
+    private int         id;
     private Utilisateur utilisateur;
-    private Article articleVendu;
+    private Article     articleVendu;
+    private Date        dateEnchere;
+    private int         montantEnchere;
     
-    // Constructeur par défaut
+    /**
+     * Default constructor
+     */
     public Enchere() {}
     
-    // Constructeur avec paramètres
+    /**
+     * Constructor with parameters
+     * @param articleVendu Article
+     * @param utilisateur Utilisateur
+     * @param dateEnchere Date
+     * @param montantEnchere int
+     */
     public Enchere(Utilisateur utilisateur, Article articleVendu, Date dateEnchere, int montantEnchere) {
-    	
-        setDateEnchere(dateEnchere);
-        setMontantEnchere(montantEnchere);
         setUtilisateur(utilisateur);
         setArticleVendu(articleVendu);
+        setDateEnchere(dateEnchere);
+        setMontantEnchere(montantEnchere);
     }
    
 
 	// Getters et setters
+    /**
+     * Get the user who made the bid
+     * @return utilisateur Utilisateur
+     */
     public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
 
+    /**
+     * Set the user who made the bid
+     * @param utilisateur Utilisateur
+     */
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
+    /**
+     * Get the article on which the bid was made
+     * @return articleVendu Article
+     */
 	public Article getArticleVendu() {
 		return articleVendu;
 	}
 
+    /**
+     * Set the article on which the bid was made
+     * @param articleVendu Article
+     */
 	public void setArticleVendu(Article articleVendu) {
 		this.articleVendu = articleVendu;
 	}
 	
+    /**
+     * Get the id of the bid
+     * @return id int
+     */
     public int getId() {
         return id;
     }
     
-    public void setId(int id) {
-        this.id = id;
+    /**
+     * Get the id of the article on which the bid was made
+     * @return article Article
+     */
+    public Article getArticle() {
+        return articleVendu;
     }
     
-    public int getIdArticle() {
-        return idArticle;
+    /**
+     * Set the article on which the bid was made
+     * @param articleVendu Article
+     */
+    public void setArticle(Article articleVendu) {
+        this.articleVendu = articleVendu;
     }
     
-    public void setIdArticle(int idArticle) {
-        this.idArticle = idArticle;
-    }
-    
-    public int getIdUtilisateur() {
-        return idUtilisateur;
-    }
-    
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
-    }
-    
+    /**
+     * Get the date of the bid
+     * @return dateEnchere Date
+     */
     public Date getDateEnchere() {
         return dateEnchere;
     }
     
+    /**
+     * Set the date of the bid
+     * @param dateEnchere Date
+     */
     public void setDateEnchere(Date dateEnchere) {
         this.dateEnchere = dateEnchere;
     }
     
+    /**
+     * Get the amount of the bid
+     * @return montantEnchere int
+     */
     public int getMontantEnchere() {
         return montantEnchere;
     }
     
+    /**
+     * Set the amount of the bid
+     * @param montantEnchere int
+     */
     public void setMontantEnchere(int montantEnchere) {
         this.montantEnchere = montantEnchere;
     }
@@ -93,9 +135,9 @@ public class Enchere {
 		builder.append(", getId()=");
 		builder.append(getId());
 		builder.append(", getIdArticle()=");
-		builder.append(getIdArticle());
+		builder.append(getArticle());
 		builder.append(", getIdUtilisateur()=");
-		builder.append(getIdUtilisateur());
+		builder.append(getUtilisateur());
 		builder.append(", getDateEnchere()=");
 		builder.append(getDateEnchere());
 		builder.append(", getMontantEnchere()=");

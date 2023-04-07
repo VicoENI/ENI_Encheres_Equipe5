@@ -53,17 +53,17 @@ public class EnchereManager {
 	 * @param enchere Enchere
 	 * @throws BLLException
 	 * @throws DALException
+	 * @throws SQLException
 	 */
-	public void Enchere(Enchere enchere) throws BLLException, DALException {
+	public void Enchere(Enchere enchere) throws BLLException, DALException, SQLException {
 		Enchere existingEnchere;
-		existingEnchere = daoEncheres.selectById(enchere.getId());
+		existingEnchere = daoEncheres.getEnchereById(enchere);
 		if (existingEnchere==null){
 			throw new BLLException("enchere inexistant.");
 		}
-		enchere.setId(existingEnchere.getId());
 		try {
 			validerEnchere(enchere);
-			daoEncheres.update(enchere);
+			daoEncheres.updateEnchereById(enchere);
 			
 		} catch (BLLException e) {
 			throw new BLLException("Echec updateEnchere-enchere:"+enchere, e);
@@ -76,7 +76,7 @@ public class EnchereManager {
 			throw new BLLException("Le montant de l'enchère doit être supérieur au prix de vente de l'article !");
 		}
 		try {
-			daoEncheres.update(enchere);
+			daoEncheres.updateEnchereById(enchere);
 		} catch (DALException e) {
 			throw new BLLException("Erreur lors de la validation de l'enchère : " + enchere, e);
 		}
@@ -93,19 +93,16 @@ public class EnchereManager {
 	
 	/**
 	 * Delete an Enchere in the database
-	 * @param index int
+	 * @param enchere Enchere
 	 * @throws BLLException
 	 * @throws DALException
 	 */
-	public void removeEnchere(int index) throws BLLException, DALException {
+	public void removeEnchere(Enchere enchere) throws BLLException, DALException {
 		try {
-			Enchere enchereToRemove = listEncheres.get(index);
-			daoEncheres.deleteEnchereById(enchereToRemove.getId());
-			listEncheres.remove(enchereToRemove);
+			daoEncheres.deleteEnchereById(enchere);
 		} catch (DALException e) {
-			throw new BLLException("Echec de la suppression de l'enchere - ", e);
-		}
-		
+			throw new BLLException("Echec deleteEnchere-enchere:"+enchere, e);
+		}		
 	}
 	
 }

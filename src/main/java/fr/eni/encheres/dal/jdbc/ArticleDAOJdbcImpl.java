@@ -41,7 +41,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             pstmt.setDate(3, (Date) article.getDateDebutEncheres());
             pstmt.setDate(4, (Date) article.getDateFinEncheres());
             pstmt.setInt(5, article.getPrixInitial());
-            pstmt.setInt(6, article.getUtilisateur().getId());
+            pstmt.setInt(6, article.getUtilisateur().getNoUtilisateur());
             pstmt.setInt(7, article.getCategorie().getNoCategorie());
 
             // Exécution de la requête
@@ -77,6 +77,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             stmt = connection.createStatement();
             rs = stmt.executeQuery(SELECT_ALL_ARTICLES);
             Article article = null;
+            Utilisateur utilisateur = null;
+            Categorie categorie = null;
 
             while (rs.next()) {
                 article = new Article();
@@ -86,8 +88,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                 article.setDateDebutEncheres(rs.getDate("date_debut_encheres"));
                 article.setDateFinEncheres(rs.getDate("date_fin_encheres"));
                 article.setPrixInitial(rs.getInt("prix_initial"));
-                article.setUtilisateur(rs.getInt("id_utilisateur"));
-                article.setCategorie(rs.getInt("id_categorie"));
+                article.setUtilisateur(utilisateur);
+                article.setCategorie(categorie);
                 listOfArticles.add(article);
             }
         } catch (SQLException e) {
@@ -110,6 +112,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         Article article = null;
+        Utilisateur utilisateur = null;
+        Categorie categorie = null;
         try {
             connection = JdbcTools.getConnection();
             pstmt = connection.prepareStatement(SELECT_ARTICLE_BY_ID);
@@ -123,8 +127,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
                 article.setDateDebutEncheres(rs.getDate("date_debut_encheres"));
                 article.setDateFinEncheres(rs.getDate("date_fin_encheres"));
                 article.setPrixInitial(rs.getInt("prix_initial"));
-                article.setUtilisateur(rs.getInt("id_utilisateur"));
-                article.setCategorie(rs.getInt("id_categorie"));
+                article.setUtilisateur(utilisateur);
+                article.setCategorie(categorie);
             }
         } catch (SQLException e) {
             throw new DALException("Erreur lors de la récupération de l'article en base de données", e);
@@ -140,27 +144,27 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
         return article;
     }
 
-    // @Override
-    // public void updateArticleById(int idArticle) throws DALException {
-    //     Connection connection = null;
-    //     PreparedStatement pstmt = null;
-    //     try {
-    //         connection = JdbcTools.getConnection();
-    //         pstmt = connection.prepareStatement(UPDATE_ARTICLE);
-    //         pstmt.setInt(1, idArticle);
-    //         pstmt.executeUpdate();
-    //     } catch (SQLException e) {
-    //         throw new DALException("Erreur lors de la mise à jour de l'article en base de données", e);
-    //     } finally {
-    //         try {
-    //             if (connection != null) {
-    //                 connection.close();
-    //             }
-    //         } catch (SQLException e) {
-    //             throw new DALException("Erreur lors de la fermeture de la connexion", e);
-    //         }
-    //     }
-    // }
+    @Override
+    public void updateArticleById(Article article) throws DALException {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        try {
+            connection = JdbcTools.getConnection();
+            pstmt = connection.prepareStatement(UPDATE_ARTICLE);
+            pstmt.setInt(1, article.getNoArticle());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DALException("Erreur lors de la mise à jour de l'article en base de données", e);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new DALException("Erreur lors de la fermeture de la connexion", e);
+            }
+        }
+    }
 
     /**
      * Methode in charge to delete an article from the database
@@ -188,5 +192,4 @@ public class ArticleDAOJdbcImpl implements ArticleDAO {
             }
         }
     }
-
 }

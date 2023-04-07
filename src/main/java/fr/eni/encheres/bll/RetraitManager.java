@@ -3,10 +3,12 @@ package fr.eni.encheres.bll;
 import java.sql.SQLException;
 import java.util.List;
 
+import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.dal.RetraitDAO;
 import fr.eni.encheres.dal.jdbc.RetraitDAOJdbcImpl;
 import fr.eni.encheres.exceptions.BLLException;
+import fr.eni.encheres.exceptions.DALException;
 
 /**
  * Class managing the Retrait.
@@ -51,11 +53,13 @@ public class RetraitManager {
 	 * @param newRetrait Retrait
 	 * @return index of new retrait
 	 * @throws BLLException 
+	 * @throws SQLException
+	 * @throws DALException
 	 */
-	public int addRetrait(Retrait newRetrait) throws BLLException {
+	public int addRetrait(Retrait newRetrait) throws BLLException, DALException, SQLException {
 		Retrait retrait;
 		try {
-			retrait = daoRetraits.selectRetraitById(newRetrait.getId());
+			retrait = daoRetraits.getRetraitByArticle(newRetrait.getArticle());
 		} catch (Exception e) {
 			throw new BLLException("Echec selectById dans addRetrait", e);
 		}
@@ -65,7 +69,7 @@ public class RetraitManager {
 		try {
 			daoRetraits.createRetrait(newRetrait);
 			listRetraits.add(newRetrait);
-		} catch (BLLException e) {
+		} catch (Exception e) {
 			throw new BLLException("Echec addRetrait", e);
 		}
 		return listRetraits.size()-1;
@@ -76,22 +80,21 @@ public class RetraitManager {
 	 * @param retrait Retrait
 	 * @throws BLLException
 	 */
-	public void updateRetraitById(Retrait retrait) throws BLLException {
+	public void updateRetrait(Retrait retrait) throws BLLException {
 		Retrait existingRetrait;
 		try {
-			existingRetrait = daoRetraits.selectRetraitById(retrait.getId());
+			existingRetrait = daoRetraits.getRetraitByArticle(retrait.getArticle());
 		} catch (Exception e) {
 			throw new BLLException("Echec selectById dans updateCategorie", e);
 		}
 		if (existingRetrait==null){
 			throw new BLLException("retrait inexistant.");
 		}
-		retrait.setId(existingRetrait.getId());
 		try {
 			daoRetraits.updateRetrait(retrait);
 			
-		} catch (BLLException e) {
-			throw new BLLException("Echec updateRetrait -retrait:"+retrait, e);
+		} catch (Exception e) {
+			throw new BLLException("Echec updateRetrait -retrait:" + e);
 		}
 	}
 	
@@ -108,13 +111,13 @@ public class RetraitManager {
 	 * Delete a retrait from the database
 	 * @param index int
 	 * @throws BLLException
+	 * @throws DALException
 	 */
-	public void removeRetrait(int index) throws BLLException {
+	public void removeRetrait(Article article) throws BLLException, DALException {
 		try {
-			daoRetraits.deleteRetrait(listRetraits.get(index).getId());
-			listRetraits.remove(index);
-		} catch (Exception e) {
-			throw new BLLException("Echec de la suppression du retrait - ", e);
+			daoRetraits.deleteRetrait(article);
+		} catch (SQLException e) {
+			throw new BLLException("Echec deleteRetrait - retrait:"+ e);
 		}
 		
 	}

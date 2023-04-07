@@ -3,12 +3,9 @@ This class represents a Retrait object, which contains information about a withd
 */
 package fr.eni.encheres.bo;
 
-import java.util.Date;
-
 public class Retrait {
     
     private int id;
-    private int noArticle;
     private String rue;
     private String codePostal;
     private String ville;
@@ -21,39 +18,26 @@ public class Retrait {
     
     /**
     * Parameterized constructor for Retrait objects.
-    * @param id id int 
-    * @param idUtilisateur id utilisateur int 
-    * @param idEnchere id enchere int
-    * @param rue rue string
-    * @param codePostal postal code string
-    * @param ville ville string
-    * @param dateRetrait dateRetrait date
-    * @param article article object 
+    * @param id int
+    * @param rue String
+    * @param codePostal String
+    * @param ville String
+    * @param article Article
     */
     // Constructeur avec paramètres
     public Retrait(String rue, String codePostal, String ville, Article article) {
-        //setId(idEnchere);
         setRue(rue);
         setCodePostal(codePostal);
         setVille(ville);
+        setArticle(article);
     }
 
-    
-
-	/**
-    * Getter method for the id attribute.
-    * @return The id of the Retrait object.
-    */
     // Getters et setters
-    
-    public int getNoArticle() {
-		return noArticle;
-	}
 
-	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
-	}
-
+    /**
+     * Get the article of the Retrait object.
+     * @return article Article
+     */
 	public Article getArticle() {
 		return article;
 	}
@@ -116,7 +100,7 @@ public class Retrait {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Retrait [getNoArticle()=");
-		builder.append(getNoArticle());
+		builder.append(getArticle());
 		builder.append(", getArticle()=");
 		builder.append(getArticle());
 		builder.append(", getId()=");

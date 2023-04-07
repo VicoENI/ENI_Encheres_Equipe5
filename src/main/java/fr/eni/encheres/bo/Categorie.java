@@ -1,31 +1,45 @@
 package fr.eni.encheres.bo;
 
-//import java.sql.Date;
-//import java.util.Date;
-
 public class Categorie {
 
+    // Attributs
     private int noCategorie;
     private String libelle;
  
-        
-    // Constructeur par défaut
+    /**
+     * Default constructor
+     */
     public Categorie() {}
 
-    // Constructeur avec paramètres
+    /**
+     * Constructor with parameters
+     * @param libelle String
+     */
     public Categorie(String libelle) {
         setLibelle(libelle);
     }
     
     // Getters et setters
+    /**
+     * Get the number of the category
+     * @return noCategorie int
+     */
     public int getNoCategorie() {
         return noCategorie;
     }
     
+    /**
+     * Get the label of the category
+     * @return libelle String
+     */
     public String getLibelle() {
         return libelle;
     }
     
+    /**
+     * Set the label of the category
+     * @param libelle String
+     */
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
@@ -40,9 +54,6 @@ public class Categorie {
         sb.append(libelle);
         sb.append("]");
         return sb.toString();
-    }
-
-    public void setCategorieId(int noCategorie2) {
     }
     
 }

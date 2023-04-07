@@ -7,6 +7,7 @@ import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.UtilisateurDAO;
 import fr.eni.encheres.dal.jdbc.UtilisateurDAOJdbcImpl;
 import fr.eni.encheres.exceptions.BLLException;
+import fr.eni.encheres.exceptions.DALException;
 
 /**
  * Class managing the Utilisateur.
@@ -51,12 +52,14 @@ public class UtilisateurManager {
 	 * @param newUtilisateur Utilisateur
 	 * @return index of the new Utilisateur in the database
 	 * @throws BLLException
+	 * @throws DALException
+	 * @throws SQLException
 	 */
-	public int addUtilisateur(Utilisateur newUtilisateur) throws BLLException {
+	public void addUtilisateur(Utilisateur newUtilisateur) throws BLLException, SQLException, DALException {
 		Utilisateur utilisateur;
 		try {
-			utilisateur = daoUtilisateurs.selectUtilisateurById(newUtilisateur);
-		} catch (BLLException e) {
+			utilisateur = daoUtilisateurs.getUtilisateurByPseudo(newUtilisateur.getPseudo());
+		} catch (Exception e) {
 			throw new BLLException("Echec selectById dans addUtilisateur", e);
 		}
 		if (utilisateur!= null){
@@ -65,11 +68,9 @@ public class UtilisateurManager {
 		try {
 			validerUtilisateur(newUtilisateur);
 			daoUtilisateurs.addUtilisateur(newUtilisateur);
-			listUtilisateurs.add(newUtilisateur);
 		} catch (BLLException e) {
 			throw new BLLException("Echec addUtilisateur", e);
 		}
-		return listUtilisateurs.size()-1;
 	}
 	
 	
@@ -77,18 +78,19 @@ public class UtilisateurManager {
 	 * Update Utilisateur in the database
 	 * @param utilisateur Utilisateur
 	 * @throws BLLException
+	 * @throws DALException
+	 * @throws SQLException
 	 */
-	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException, SQLException, DALException {
 		Utilisateur existingUtilisateur;
 		try {
-			existingUtilisateur = daoUtilisateurs.selectUtilisateurById(utilisateur.getNoUtilisateur());
-		} catch (BLLException e) {
+			existingUtilisateur = daoUtilisateurs.getUtilisateurByPseudo(utilisateur.getPseudo());
+		} catch (Exception e) {
 			throw new BLLException("Echec selectById dans updateUtilisateur", e);
 		}
 		if (existingUtilisateur==null){
 			throw new BLLException("utilisateur inexistant.");
 		}
-		utilisateur.setNoUtilisateur(existingUtilisateur.getNoUtilisateur());
 		try {
 			validerUtilisateur(utilisateur);
 			daoUtilisateurs.updateUtilisateur(utilisateur);
@@ -113,10 +115,9 @@ public class UtilisateurManager {
 	 * @param index int
 	 * @throws BLLException
 	 */
-	public void removeUtilisateur(int index) throws BLLException {
+	public void removeUtilisateur(Utilisateur utilisateur) throws BLLException {
 		try {
-			daoUtilisateurs.deleteUtilisateur(listUtilisateurs.get(index).getNoUtilisateur());
-			listUtilisateurs.remove(index);
+			daoUtilisateurs.deleteUtilisateur(utilisateur);
 		} catch (Exception e) {
 			throw new BLLException("Echec de la suppression de l'utilisateur - ", e);
 		}
@@ -157,10 +158,10 @@ public class UtilisateurManager {
 			sb.append("La ville est obligatoire.\n");
 			valide = false;
 		}
-		if(u.getCredit()==0 || u.getCredit().trim().length()==0){
-			sb.append("Le crédit  est obligatoire.\n");
-			valide = false;
-		}
+		// if(u.getCredit()==0 || u.getCredit().trim().length()==0){
+		// 	sb.append("Le crédit  est obligatoire.\n");
+		// 	valide = false;
+		// }
 		if(u.getCodePostal()==null || u.getCodePostal().trim().length()==0){
 			sb.append("Le code postal est obligatoire.\n");
 			valide = false;

@@ -1,5 +1,6 @@
 package fr.eni.encheres.dal;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.encheres.bo.Enchere;
@@ -18,27 +19,40 @@ public interface EnchereDAO {
      * Method in charge of creating a new bid in the database
      * @param enchere Enchere
      * @throws DALException
+     * @throws SQLException
      */
-    void createEnchere(Enchere enchere) throws DALException;
+    void createEnchere(Enchere enchere) throws DALException, SQLException;
     
     /**
      * Method in charge of retrieving all the bids from the database
      * @return List of bids
      * @throws DALException
+     * @throws SQLException
      */
-    List<Enchere> getAllEncheres() throws DALException;
+    List<Enchere> getAllEncheres() throws DALException, SQLException;
     
     /**
      * Method in charge of retrieving a bid from the database by its number
-     * @param noArticle int
+     * @param enchere Enchere
      * @return List of bids
      * @throws DALException
+     * @throws SQLException
      */
-    List<Enchere> getEncheresByNoArticle(int noArticle) throws DALException;
+    Enchere getEnchereById(Enchere enchere) throws DALException, SQLException;
 
-    public Enchere selectById(int id) throws DALException;
+    /**
+     * Method in charge of updating a bid in the database
+     * @param enchere Enchere
+     * @throws DALException
+     * @throws SQLException
+     */
+    public void updateEnchereById(Enchere enchere) throws DALException;
 
-    public void update(Enchere enchere) throws DALException;
-
-    public void deleteEnchereById(int id) throws DALException;
+    /**
+     * Method in charge of deleting a bid from the database
+     * @param enchere Enchere
+     * @throws DALException
+     * @throws SQLException
+     */
+    public void deleteEnchereById(Enchere enchere) throws DALException;
 }

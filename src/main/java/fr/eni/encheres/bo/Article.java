@@ -16,8 +16,8 @@ public class Article {
     private Date        dateFinEncheres;
     private int         prixInitial;
     private int         prixVente;
-    private int utilisateur;
-    private int   categorie;
+    private Utilisateur utilisateur;
+    private Categorie   categorie;
 
     // Constructeurs
     /**
@@ -38,8 +38,8 @@ public class Article {
      * @param categorie Categorie
      */
     public Article(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-                    Date dateFinEncheres, int prixInitial, int prixVente, int utilisateur,
-                    int categorie) {
+                    Date dateFinEncheres, int prixInitial, int prixVente, Utilisateur utilisateur,
+                    Categorie categorie) {
                 
         setNoArticle(noArticle);
         setNomArticle(nomArticle);
@@ -170,32 +170,32 @@ public class Article {
      * Returns the article owner.
      * @return utilisateur Utilisateur
      */
-    public int getUtilisateur() {
+    public Utilisateur getUtilisateur() {
         return utilisateur;
     }
 
     /**
      * Sets the article owner.
-     * @param i Utilisateur
+     * @param utilisateur Utilisateur
      */
-    public void setUtilisateur(int i) {
-        this.utilisateur = i;
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     /**
      * Returns the article category.
      * @return categorie Categorie
      */
-    public int getCategorie() {
+    public Categorie getCategorie() {
         return categorie;
     }
 
     /**
      * Sets the article category.
-     * @param i Categorie
+     * @param categorie Categorie
      */
-    public void setCategorie(int i) {
-        this.categorie = i;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     /**
