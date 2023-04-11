@@ -6,7 +6,7 @@
             <jsp:include page="../fragments/link.jsp" flush="true" />
         </div>
         <div class="col-6">
-            <a href="" class="text-end">S'inscrire - Se connecter</a>
+            <a href="<%= request.getContextPath() %>/ServletConnection" class="text-end">S'inscrire - Se connecter</a>
         </div>
     </div>
     <div class="row">

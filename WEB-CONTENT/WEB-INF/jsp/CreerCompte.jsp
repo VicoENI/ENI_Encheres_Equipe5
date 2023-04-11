@@ -7,51 +7,53 @@
         </div>
 	 </div>
       <form class="row g-3">
-      <h2>Mon profil</h2>
+      <h2 class="text-center">Mon profil</h2>
 	  <div class="col-md-6">
-	    <label for="inputPseudo" class="form-label">Pseudo</label>
-	    <input type="text" class="form-control" id="inputPseudo">
+	    <label for="inputPseudo" class="form-label">Pseudo *</label>
+	    <input type="text" class="form-control" id="inputPseudo" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputNom" class="form-label">Nom</label>
-	    <input type="text" class="form-control" id="inputNom">
+	    <label for="inputNom" class="form-label">Nom *</label>
+	    <input type="text" class="form-control" id="inputNom" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputPenom" class="form-label">Prénom</label>
-	    <input type="text" class="form-control" id="inputPrenom">
+	    <label for="inputPenom" class="form-label">Prénom *</label>
+	    <input type="text" class="form-control" id="inputPrenom" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputEmail4" class="form-label">Email</label>
-	    <input type="email" class="form-control" id="inputEmail4">
+	    <label for="inputEmail4" class="form-label">Email *</label>
+	    <input type="email" class="form-control" id="inputEmail4" required>
 	  </div>
 	  <div class="col-md-6">
 	    <label for="inputTelephone" class="form-label">Téléphone</label>
 	    <input type="text" class="form-control" id="inputTelephone">
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputRue" class="form-label">Rue</label>
-	    <input type="text" class="form-control" id="inputRue">
+	    <label for="inputRue" class="form-label">Rue *</label>
+	    <input type="text" class="form-control" id="inputRue" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputEmail4" class="form-label">Code Postal</label>
-	    <input type="number" class="form-control" id="inputCodePostal">
+	    <label for="inputEmail4" class="form-label">Code Postal *</label>
+	    <input type="number" class="form-control" id="inputCodePostal" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputVille" class="form-label">Ville</label>
-	    <input type="text" class="form-control" id="inputVille">
+	    <label for="inputVille" class="form-label">Ville *</label>
+	    <input type="text" class="form-control" id="inputVille" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputPassword4" class="form-label">Nouveau mot de passe</label>
-	    <input type="password" class="form-control" id="inputPassword4">
+	    <label for="inputPassword4" class="form-label">Mot de passe *</label>
+	    <input type="password" class="form-control" id="password" required>
 	  </div>
 	  <div class="col-md-6">
-	    <label for="inputPassword4" class="form-label"></label>
-	    <input type="password" class="form-control" id="inputPassword4">
+	    <label for="inputPassword4" class="form-label">Confirmation *</label>
+	    <input type="password" class="form-control" id="passwordConfirmation" required>
 	  </div>
-	  <div class="col-12">
+	  <div class="col-6">
 	    <button type="submit" class="btn btn-primary">Créer</button>
-	    <button type="submit" class="btn btn-primary">Annuler</button>
-	  </div>
+	</div>
+	<div class="col-6">
+		<button type="submit" class="btn btn-primary">Annuler</button>
+	</div>
 	</form>
 </div>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
