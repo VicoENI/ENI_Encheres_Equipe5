@@ -9,10 +9,13 @@
 </div>
 
 <ul class="list-group">
-  <li class="list-group-item disabled" aria-disabled="true">A disabled item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
+  <li class="list-group-item">Pseudo : </li>
+  <li class="list-group-item">Nom :</li>
+  <li class="list-group-item">Prenom :</li>
+  <li class="list-group-item">Email : </li>
+  <li class="list-group-item">Téléphone</li>
+  <li class="list-group-item">Rue</li>
+  <li class="list-group-item">Code Postal :</li>
+  <li class="list-group-item">Ville : </li>
 </ul>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
