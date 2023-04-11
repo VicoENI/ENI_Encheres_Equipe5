@@ -14,7 +14,7 @@
   <li class="list-group-item">Prenom :</li>
   <li class="list-group-item">Email : </li>
   <li class="list-group-item">Téléphone</li>
-  <li class="list-group-item">Rue</li>
+  <li class="list-group-item">Rue :</li>
   <li class="list-group-item">Code Postal :</li>
   <li class="list-group-item">Ville : </li>
 </ul>
