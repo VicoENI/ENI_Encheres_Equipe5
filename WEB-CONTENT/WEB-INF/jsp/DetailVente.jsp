@@ -18,15 +18,21 @@
         <label for="categorie">
             Catégorie :
         </label>
-        <p class="card-text">Prix : <%--  <% article.getPrixVente() %> --%></p>
-        <p class="card-text">Fin de l'enchère : <%-- <% article.getDateFinEnchere() %> --%></p>
-        <br>
-        <p class="card-text">Vendeur : <%-- <% article.getUtilisateur().getPseudo() %> --%></p>
+        <p>Nom du produit : <%= article.getNom() %></p>
+        <p>Description : <%= article.getDescription() %></p>
+        <p>Catégorie : <%= article.getCategorie() %></p>
+        <p>Meilleure offre : <%= article.getMeilleureOffre() %> €</p>
+        <p>Mise à prix : <%= article.getMiseAPrix() %> €</p>
+        <p>Fin de l'enchère : <%= article.getDateFinEnchere() %></p>
+        <p>Retrait : <%= article.getRetrait() %></p>
+        <p>Vendeur : <%= article.getUtilisateur().getPseudo() %></p>
     </div>
-
-    <div class="col-3">
+    <form method="post">
+        <div class="form-group">
+            <label for="proposition">Ma proposition :</label>
+            <input type="number" step="0.01" class="form-control" id="proposition" name="proposition" required>
+        </div>
         <input type="submit" class="btn btn-warning" value="Enchérir">
-    </div>
-
+    </form>
 </div>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
