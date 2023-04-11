@@ -1,8 +1,6 @@
 package fr.eni.encheres.servlet;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,9 +52,10 @@ public class ServletDispatcher extends HttpServlet {
 			// la session est détruite
 			request.getSession().invalidate();
 			// on redirige vers la page d'accueil
-			RequestDispatcher rd1 =  request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
-			rd1.forward(request, response);
+			RequestDispatcher rd =  request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
+			rd.forward(request, response);
 			break;
+		doGet(request, response);
 		}
 	}
 }
