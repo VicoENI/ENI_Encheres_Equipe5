@@ -6,17 +6,18 @@
         <jsp:include page="../fragments/link.jsp" flush="true" />
       </div>
     </div>
-    <div class="row">
-      <div class="col-12">
+    <h2 class="text-center">Détails du profil</h2>
+        <div class="row">
+          <div class="col-8">
         <ul class="list-group">
-          <li class="list-group-item">Pseudo : </li>
-          <li class="list-group-item">Nom :</li>
-          <li class="list-group-item">Prenom :</li>
-          <li class="list-group-item">Email : </li>
-          <li class="list-group-item">Téléphone</li>
-          <li class="list-group-item">Rue</li>
-          <li class="list-group-item">Code Postal :</li>
-          <li class="list-group-item">Ville : </li>
+          <li class="list-group-item">Pseudo : <%= utilisateur.getPseudo() %></li>
+          <li class="list-group-item">Nom : <%= utilisateur.getNom() %></li>
+          <li class="list-group-item">Prenom : <%= utilisateur.getPrenom() %></li>
+          <li class="list-group-item">Email : <%= utilisateur.getEmail() %></li>
+          <li class="list-group-item">Téléphone : <%= utilisateur.getTelephone() %></li>
+          <li class="list-group-item">Rue : <%= utilisateur.getRue() %></li>
+          <li class="list-group-item">Code Postal : <%= utilisateur.getCodePostal() %></li>
+          <li class="list-group-item">Ville : <%= utilisateur.getVille() %></li>
         </ul>
       </div>
     </div>
