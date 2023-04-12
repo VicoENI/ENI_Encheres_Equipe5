@@ -49,12 +49,10 @@
 			<label for="confirmationmdp" class="form-label">Confirmation *</label>
 			<input type="password" class="form-control" id="confirmationmdp" name="confirmationmdp" required>
 		</div>
-		<div class="col-6">
-			<button type="submit" class="btn btn-primary">Créer</button>
-		</div>
-		<div class="col-6">
-			<button type="reset" class="btn btn-primary">Annuler</button>
-		</div>
+		<div class="d-grid gap-5 d-md-flex justify-content-center">
+			<button type="submit" class="btn btn-primary">Enregistrer</button>
+			<button type="reset" class="btn btn-primary">Annuler la modification</button>
+		  </div>
 	</form>
 </div>
 <script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
