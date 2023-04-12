@@ -130,5 +130,6 @@
       </div>
   </div> -->
 </div>
-<script src="/WEB-CONTENT/ListEnchereConnected.js"></script>
+<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.js"></script>
+<script src="<%= request.getContextPath() %>/js/ListEnchereConnected.js"></script>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
