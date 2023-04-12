@@ -18,14 +18,14 @@
         <label for="categorie">
             Catégorie :
         </label>
-        <p>Nom du produit : <%= article.getNom() %></p>
-        <p>Description : <%= article.getDescription() %></p>
-        <p>Catégorie : <%= article.getCategorie() %></p>
-        <p>Meilleure offre : <%= article.getMeilleureOffre() %> €</p>
-        <p>Mise à prix : <%= article.getMiseAPrix() %> €</p>
-        <p>Fin de l'enchère : <%= article.getDateFinEnchere() %></p>
-        <p>Retrait : <%= article.getRetrait() %></p>
-        <p>Vendeur : <%= article.getUtilisateur().getPseudo() %></p>
+        <p>Nom du produit : <!--<%= article.getNom() %>--></p>
+        <p>Description : <!--<%= article.getDescription() %>--></p>
+        <p>Catégorie : <!--<%= article.getCategorie() %>--></p>
+        <p>Meilleure offre : <!--<%= article.getMeilleureOffre() %>--> €</p>
+        <p>Mise à prix : <!--<%= article.getMiseAPrix() %>--> €</p>
+        <p>Fin de l'enchère : <!--<%= article.getDateFinEnchere() %>--></p>
+        <p>Retrait : <!--<%= article.getRetrait() %>--></p>
+        <p>Vendeur : <!--<%= article.getUtilisateur().getPseudo() %>--></p>
     </div>
     <form method="post">
         <div class="form-group">
