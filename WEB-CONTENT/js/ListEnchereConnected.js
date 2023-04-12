@@ -1,10 +1,10 @@
-
     $(document).ready(function() {
     // Enregistrement de la fonction de gestion d'événement pour le changement de radio
     $('input[name="inlineRadioOptions"]').on('change', function() {
         var isChecked = $(this).is(':checked');
         if (isChecked) {
         // Désactiver les cases à cocher de l'autre radio
+        //debugger
         $('input[name="inlineRadioOptions"]').not(this).prop('checked', false);
         if ($(this).val() === 'Achats') {
             // Activer les cases à cocher de l'achat et désactiver celles de la vente
@@ -63,6 +63,4 @@
         };
     };
   }) 
-});
-
-
+})
