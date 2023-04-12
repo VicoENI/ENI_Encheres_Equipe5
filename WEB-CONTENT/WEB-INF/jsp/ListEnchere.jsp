@@ -6,7 +6,31 @@
       <jsp:include page="../fragments/link.jsp" flush="true" />
     </div>
     <div class="col-6">
-      <a href="<%= request.getContextPath() %>/ServletConnection" class="text-end">S'inscrire - Se connecter</a>
+        <a href="<%= request.getContextPath() %>/ServletConnection" class="d-flex justify-content-end">S'inscrire - Se connecter</a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Enchères</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendre un article</a>
+                    <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Creer</a></li>
+                    <li><a class="dropdown-item" href="#">Modifier</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mon Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Deconnexion</a>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </nav>
     </div>
   </div>
   <div class="row">
