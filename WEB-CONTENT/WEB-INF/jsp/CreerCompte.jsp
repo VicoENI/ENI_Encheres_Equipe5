@@ -48,12 +48,10 @@
 	    <label for="inputPassword4" class="form-label">Confirmation *</label>
 	    <input type="password" class="form-control" id="passwordConfirmation" required>
 	  </div>
-	  <div class="col-6">
-	    <button type="submit" class="btn btn-primary">Créer</button>
-	</div>
-	<div class="col-6">
-		<button type="submit" class="btn btn-primary">Annuler</button>
-	</div>
+	  <div class="d-grid gap-5 d-md-flex justify-content-center ">
+		<button type="submit" class="btn btn-primary btn-lg">Créer</button>
+		<button type="submit" class="btn btn-primary btn-lg">Annuler</button>
+	  </div>
 	</form>
 </div>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
