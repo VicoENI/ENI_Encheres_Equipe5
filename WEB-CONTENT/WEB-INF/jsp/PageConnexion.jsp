@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="center" action="<%= request.getContextPath() %>/ServletConnection" method="POST">
+        <form class="center" action="<%= request.getContextPath() %>/login" method="POST">
             <div class="col-12">
                 <label for="pseudo" class="form-label">Identifiant</label>
                 <input type="text" class="form-control" id="pseudo">
@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="row">
-        <form action="<%= request.getContextPath() %>/ServletConnection" method="post">
+        <form action="<%= request.getContextPath() %>/inscription" method="get">
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" class="btn btn-primary" name="button" value="createAccount">Créer un compte</button>
             </div>

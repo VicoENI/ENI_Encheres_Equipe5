@@ -6,7 +6,7 @@
       <jsp:include page="../fragments/link.jsp" flush="true" />
     </div>
     <div class="col-6">
-      <a href="<%= request.getContextPath() %>/ServletConnection" class="text-end">S'inscrire - Se connecter</a>
+      <a href="<%= request.getContextPath() %>/login" class="text-end">S'inscrire - Se connecter</a>
     </div>
   </div>
   <div class="row">
@@ -38,7 +38,6 @@
       </div>
       <div class="col-6">
         <div class="form-check form-check-inline">
-            <c:if isConnected(true)>
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Achats">
             <label class="form-check-label" for="inlineRadio1">Achats</label>
             <div class="form-check">
@@ -107,5 +106,5 @@
       </div>
   </div> -->
 </div>
-<script src="/WEB-CONTENT/ListEnchereConnected.js"></script>
+
 <jsp:include page="../fragments/footer.jsp" flush="true" />
