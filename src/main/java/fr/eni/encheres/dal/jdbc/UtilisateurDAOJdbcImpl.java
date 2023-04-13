@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLType;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.jdbc.JdbcTools;
 import fr.eni.encheres.dal.UtilisateurDAO;
 import fr.eni.encheres.exceptions.DALException;
 
@@ -18,15 +21,12 @@ import fr.eni.encheres.exceptions.DALException;
  */
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-    // Attributs
-    private Connection connection;
-
     // Requetes SQL
-    private static final String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
-    private static final String GET_UTILISATEURS = "SELECT * FROM UTILISATEURS";
-    private static final String ADD_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, imageLien, administratrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, imageLien = ?, administrateur = ? WHERE no_utilisateur = ?";
-    private static final String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+    private static final String GET_UTILISATEUR_BY_PSEUDO   = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+    private static final String GET_UTILISATEURS            = "SELECT * FROM UTILISATEURS";
+    private static final String ADD_UTILISATEUR             = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, imageLien, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_UTILISATEUR          = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, imageLien = ?, administrateur = ? WHERE no_utilisateur = ?";
+    private static final String DELETE_UTILISATEUR          = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
     /**
      * Constructor in charge of initializing the connection attribute with the connection passed in parameter
@@ -88,10 +88,24 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     @Override
     public List<Utilisateur> getUtilisateurs() throws DALException, SQLException {
         List<Utilisateur> utilisateurs = new ArrayList<>();
+        Connection connection = JdbcTools.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(GET_UTILISATEURS);
              ResultSet resultSet = statement.executeQuery()) {
-            while (resultSet.next()) {
-                Utilisateur utilisateur  = new Utilisateur();
+            while (resultSet.next()) 
+            {
+            	String lastName = resultSet.getString("nom");
+            	String firstName = resultSet.getString("prenom");
+            	String email = resultSet.getString("email");
+            	String password = resultSet.getString("mot_de_passe");
+            	String pseudo = resultSet.getString("pseudo");
+            	String phone = resultSet.getString("telephone");
+            	int credit = resultSet.getInt("credit");
+            	boolean isAdmin = resultSet.getBoolean("administrateur");
+            	String city = resultSet.getString("ville");
+            	String street = resultSet.getString("rue");
+            	String zipcode = resultSet.getString("code_postal");
+            	
+                Utilisateur utilisateur  = new Utilisateur(lastName, firstName, email, password, pseudo, phone, credit, isAdmin, city, street, zipcode);
                 utilisateurs.add(utilisateur);
             }
         }
@@ -106,6 +120,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
      */
     @Override
     public void addUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
+    	
+    	Connection connection = JdbcTools.getConnection();
+    	connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
+    	
         try (PreparedStatement statement = connection.prepareStatement(ADD_UTILISATEUR)) {
             statement.setString(1, utilisateur.getPseudo());
             statement.setString(2, utilisateur.getNom());
@@ -117,7 +135,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             statement.setString(8, utilisateur.getVille());
             statement.setString(9, utilisateur.getMotDePasse());
             statement.setInt(10, utilisateur.getCredit());
-            statement.setBoolean(11, utilisateur.isAdministrateur());
+            statement.setNull(11, Types.NULL);
+            statement.setBoolean(12, utilisateur.isAdministrateur());
             statement.executeUpdate();
         }
     }
@@ -130,8 +149,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
      */
     @Override
     public void updateUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
+    	Connection connection = JdbcTools.getConnection();
+    	
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_UTILISATEUR)) {
-            statement.setString(1, utilisateur.getPseudo());
+        	statement.setString(1, utilisateur.getPseudo());
             statement.setString(2, utilisateur.getNom());
             statement.setString(3, utilisateur.getPrenom());
             statement.setString(4, utilisateur.getEmail());
@@ -141,8 +162,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             statement.setString(8, utilisateur.getVille());
             statement.setString(9, utilisateur.getMotDePasse());
             statement.setInt(10, utilisateur.getCredit());
-            statement.setBoolean(11, utilisateur.isAdministrateur());
-            statement.setInt(12, utilisateur.getNoUtilisateur());
+            statement.setNull(11, Types.NULL);
+            statement.setBoolean(12, utilisateur.isAdministrateur());
+            statement.setInt(13, utilisateur.getNoUtilisateur());
             statement.executeUpdate();
         }
     }

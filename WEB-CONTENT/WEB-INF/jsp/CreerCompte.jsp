@@ -55,5 +55,5 @@
 		  </div>
 	</form>
 </div>
-<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.min.js"></script>
+<script src="<%= request.getContextPath() %>/vendor/jquery/jquery.js"></script>
 <jsp:include page="../fragments/footer.jsp" flush="true" />
