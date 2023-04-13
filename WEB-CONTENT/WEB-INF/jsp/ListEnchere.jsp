@@ -6,31 +6,40 @@
       <jsp:include page="../fragments/link.jsp" flush="true" />
     </div>
     <div class="col-6">
-      <a href="<%= request.getContextPath() %>/login" class="text-end">S'inscrire - Se connecter</a>
+      <!-- Si il y a un utilisateur en session -->
+      <c:if test="${sessionScope.utilisateur == null}">
+        <span>
+          <a href="<%= request.getContextPath() %>/inscription">S'inscrire</a>
+           - 
+          <a href="<%= request.getContextPath() %>/login" class="text-end">Se connecter</a>
+        </span>
+      </c:if>
+      <c:if test="${sessionScope.utilisateur != null}">
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
+          <div class="container-fluid">
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+              <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Enchères</a>
+                  <a class="nav-link" href="<%= request.getContextPath() %>/ServletDispatcher?page=encheres">Enchères</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendre un article</a>
-                    <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Creer</a></li>
-                    <li><a class="dropdown-item" href="#">Modifier</a></li>
-                    </ul>
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendre un article</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="<%= request.getContextPath() %>/ServletDispatcher?page=creer_article">Creer</a></li>
+                    <li><a class="dropdown-item" href="<%= request.getContextPath() %>/ServletDispatcher?page=modifier_article">Modifier</a></li>
+                  </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mon Profil</a>
+                  <a class="nav-link" href="<%= request.getContextPath() %>/ServletDispatcher?page=profil">Mon Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Deconnexion</a>
+                  <a class="nav-link" href="<%= request.getContextPath() %>/ServletDispatcher?page=deconnexion">Deconnexion</a>
                 </li>
-                </ul>
+              </ul>
             </div>
-            </div>
+          </div>
         </nav>
+      </c:if>
     </div>
   </div>
   <div class="row">
@@ -62,45 +71,45 @@
       </div>
       <div class="col-6">
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Achats">
-            <label class="form-check-label" for="inlineRadio1">Achats</label>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Achats" value="Achats">
+            <label class="form-check-label" for="Achats">Achats</label>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="enchères terminées" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
+              <input class="form-check-input" type="checkbox" value="achats_encheres_termines" id="achats_encheres_termines">
+              <label class="form-check-label" for="achats_encheres_termines">
                 enchères ouvertes
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="mes enchères en cours" id="defaultCheck2">
-              <label class="form-check-label" for="defaultCheck2">
+              <input class="form-check-input" type="checkbox" value="achats_encheres_cours" id="achats_encheres_cours">
+              <label class="form-check-label" for="achats_encheres_cours">
                 mes enchères en cours
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="mes enchères remportées" id="defaultCheck3">
-              <label class="form-check-label" for="defaultCheck3">
+              <input class="form-check-input" type="checkbox" value="achats_encheres_remportees" id="achats_encheres_remportees">
+              <label class="form-check-label" for="achats_encheres_remportees">
                 mes emchères remportées
               </label>
             </div>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Ventes">
-            <label class="form-check-label" for="inlineRadio2">Mes ventes</label>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Ventes" value="Ventes">
+            <label class="form-check-label" for="Ventes">Mes ventes</label>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="mes enchères en cours" id="defaultCheck4">
-              <label class="form-check-label" for="defaultCheck4">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_cours" id="ventes_encheres_cours">
+              <label class="form-check-label" for="ventes_encheres_cours">
                 mes enchères en cours
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes non terminées" id="defaultCheck5">
-              <label class="form-check-label" for="defaultCheck5">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_non_terminees" id="ventes_encheres_non_terminees">
+              <label class="form-check-label" for="ventes_encheres_non_terminees">
                 ventes non débutées
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes terminées" id="defaultCheck6">
-              <label class="form-check-label" for="defaultCheck6">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_terminees" id="ventes_encheres_terminees">
+              <label class="form-check-label" for="ventes_encheres_terminees">
                 ventes terminées
               </label>
             </div>

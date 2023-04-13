@@ -29,34 +29,33 @@ public class ServletDispatcher extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		String page = request.getParameter("page");
+
+		switch (page) {
+			case "encheres":
+				request.getRequestDispatcher("/WEB-INF/jsp/ListEnchere.jsp").forward(request, response);
+				break;
+			case "creer_article":
+				request.getRequestDispatcher("/WEB-INF/jsp/NouvelleVente.jsp").forward(request, response);
+				break;
+			case "modifier_article":
+				request.getRequestDispatcher("/WEB-INF/jsp/DetailVente.jsp").forward(request, response);
+				break;
+			case "profil":
+				request.getRequestDispatcher("/WEB-INF/jsp/AfficherProfil.jsp").forward(request, response);
+				break;
+			case "deconnexion":
+				request.getRequestDispatcher("/WEB-INF/jsp/PageConnexion.jsp").forward(request, response);
+				break;
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		switch (request.getParameter("action")) {
-		case "echeres":
-			break;
-		case "vendre":
-			break;
-		case "profil":
-			// Récupération de l'utilisateur connecté
-			
-			// Redirection vers la page profil
-			RequestDispatcher rd =  request.getRequestDispatcher("WEB-INF/jsp/ModifierProfil.jsp");
-			rd.forward(request, response);
-			break;
-		case "deconnexion":
-			// l'attribut isConnected est mis à false
-			request.setAttribute("isConnected", false);
-			// la session est détruite
-			request.getSession().invalidate();
-			// on redirige vers la page d'accueil
-			RequestDispatcher rd1 =  request.getRequestDispatcher("WEB-INF/jsp/Accueil.jsp");
-			rd1.forward(request, response);
-			break;
-		}
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 }
