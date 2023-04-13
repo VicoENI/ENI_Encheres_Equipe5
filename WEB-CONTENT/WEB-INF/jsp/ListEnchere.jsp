@@ -33,7 +33,7 @@
 	                    <a class="nav-link" href="#">Mon Profil</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#">Deconnexion</a>
+	                    <a class="nav-link" href="<%= request.getContextPath() %>/logout">Deconnexion</a>
 	                </li>
 	                </ul>
 	            </div>
