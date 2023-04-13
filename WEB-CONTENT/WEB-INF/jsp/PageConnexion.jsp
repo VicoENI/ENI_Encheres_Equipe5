@@ -33,7 +33,7 @@
         </c:if>
     </div>
     <div class="row">
-        <form action="<%= request.getContextPath() %>/inscription" method="get">
+        <form action="<%= request.getContextPath() %>/inscription" method="GET">
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" class="btn btn-primary" name="button" value="createAccount">Créer un compte</button>
             </div>
