@@ -20,13 +20,13 @@
 	            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 	                <ul class="navbar-nav">
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#">Enchères</a>
+	                    <a class="nav-link" href="<%= request.getContextPath() %>/ServletDispatcher?page=encheres">Enchères</a>
 	                </li>
 	                <li class="nav-item dropdown">
 	                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vendre un article</a>
 	                    <ul class="dropdown-menu">
-	                    <li><a class="dropdown-item" href="#">Creer</a></li>
-	                    <li><a class="dropdown-item" href="#">Modifier</a></li>
+	                    <li><a class="dropdown-item" href="<%= request.getContextPath() %>/ServletDispatcher?page=creer_article">Creer</a></li>
+	                    <li><a class="dropdown-item" href="<%= request.getContextPath() %>/ServletDispatcher?page=modifier_article">Modifier</a></li>
 	                    </ul>
 	                </li>
 	                <li class="nav-item">
