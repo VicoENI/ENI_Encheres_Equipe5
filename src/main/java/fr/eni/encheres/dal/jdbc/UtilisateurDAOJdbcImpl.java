@@ -22,11 +22,11 @@ import fr.eni.encheres.exceptions.DALException;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
     // Requetes SQL
-    private static final String GET_UTILISATEUR_BY_PSEUDO = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
-    private static final String GET_UTILISATEURS = "SELECT * FROM UTILISATEURS";
-    private static final String ADD_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, imageLien, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, imageLien = ?, administrateur = ? WHERE no_utilisateur = ?";
-    private static final String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+    private static final String GET_UTILISATEUR_BY_PSEUDO   = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+    private static final String GET_UTILISATEURS            = "SELECT * FROM UTILISATEURS";
+    private static final String ADD_UTILISATEUR             = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, imageLien, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_UTILISATEUR          = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, imageLien = ?, administrateur = ? WHERE no_utilisateur = ?";
+    private static final String DELETE_UTILISATEUR          = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
     /**
      * Constructor in charge of initializing the connection attribute with the connection passed in parameter
