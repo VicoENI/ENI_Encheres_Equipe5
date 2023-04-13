@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.CategorieDAO;
+import fr.eni.encheres.dal.ConnectionProvider;
 import fr.eni.encheres.exceptions.DALException;
 
 /**
@@ -34,7 +35,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
      * @throws SQLException
      */
     public CategorieDAOJdbcImpl() throws SQLException {
-        this.connection = JdbcTools.getConnection();
+        this.connection = ConnectionProvider.getConnection();
     }
 
     /**
@@ -47,7 +48,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.prepareStatement(CREATE_CATEGORIE);
             statement.setString(1, categorie.getLibelle());
             statement.executeUpdate();
@@ -79,7 +80,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
         ResultSet resultSet = null;
         List<Categorie> categories = new ArrayList<Categorie>();
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(GET_ALL_CATEGORIES);
             Categorie categorie = null;
@@ -151,7 +152,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.prepareStatement(UPDATE_CATEGORIE);
             statement.setString(1, libelle);
             statement.setInt(2, id);
@@ -183,7 +184,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.prepareStatement(DELETE_CATEGORIE);
             statement.setInt(1, noCategorie);
             statement.executeUpdate();

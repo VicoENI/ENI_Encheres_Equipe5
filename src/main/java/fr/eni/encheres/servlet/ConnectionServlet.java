@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dal.jdbc.JdbcTools;
 import fr.eni.encheres.exceptions.BLLException;
 import fr.eni.encheres.utils.PasswordManager;
 
@@ -51,28 +50,33 @@ public class ConnectionServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String pseudo 	= request.getParameter("pseudo");
+		String identifiant = request.getParameter("identifiant");
 		String password = request.getParameter("password");
 		
-		boolean validCredentials = checkCredentials(pseudo, password);
+		if(identifiant == null || password == null)
+		{
+			request.setAttribute("errorMessage", "Veuillez remplir les champs obligatoires");
+			request.getRequestDispatcher("WEB-INF/jsp/PageConnexion.jsp").forward(request, response);
+			return;
+		}
 		
-		if(validCredentials)
+		Utilisateur foundUser = findUser(identifiant, password);
+		
+		if(foundUser != null)
 		{
 			HttpSession session = request.getSession();
-			session.setAttribute("pseudo", pseudo);
+			session.setAttribute("utilisateur", foundUser);
 			
-			response.sendRedirect(request.getContextPath() + "/accueil");
+			response.sendRedirect(request.getContextPath() + "/");
 		}
 		else
 		{
-			request.setAttribute("errorMessage", "Pseudo ou mot de passe incorrect");
-			request.getRequestDispatcher("WEB-INF/jsp/PageConnexion.jsp");
+			request.setAttribute("errorMessage", "Authentification incorrecte");
+			request.getRequestDispatcher("/WEB-INF/jsp/PageConnexion.jsp").forward(request, response);
 		}
-		
-		doGet(request, response);
 	}
 	
-	private boolean checkCredentials(String pseudo, String password)
+	private Utilisateur findUser(String identifiant, String password)
 	{
 		try
 		{
@@ -83,7 +87,7 @@ public class ConnectionServlet extends HttpServlet
 			
 			for(Utilisateur user : users)
 			{
-				if(user.getPseudo().contentEquals(pseudo))
+				if(user != null && (user.getPseudo().contentEquals(identifiant) || user.getEmail().contentEquals(identifiant)))
 				{
 					foundUser = user;
 					break;
@@ -91,7 +95,7 @@ public class ConnectionServlet extends HttpServlet
 			}
 			
 			if(foundUser != null && PasswordManager.verifyPassword(password, foundUser.getMotDePasse()))
-				return true;
+				return foundUser;
 			
 			
 		} catch (BLLException e)
@@ -99,7 +103,7 @@ public class ConnectionServlet extends HttpServlet
 			e.printStackTrace();
 		}
 		
-		return false;
+		return null;
 	}
 
 }

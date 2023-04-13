@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource 
+    	name="jdbc/encheres"    	
+    	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    	type="javax.sql.DataSource"
+        url="jdbc:sqlserver://10.139.200.18;databaseName=ENCHERE_DB;integratedSecurity=false;encrypt=false;trustServerCertificate=false"      
+        username="sa" password="Pa$$w0rd"        
+        maxActive="100" maxIdle="30" maxWait="10000"/>
+</Context>

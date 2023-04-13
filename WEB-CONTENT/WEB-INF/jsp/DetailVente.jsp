@@ -1,5 +1,7 @@
+<%@page import="fr.eni.encheres.bo.Article"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../fragments/header.jsp" flush="true" />
+<% Article article = null; %>
 <div class="container">
     <div class="row">
         <div class="col-6">
@@ -18,14 +20,7 @@
         <label for="categorie">
             Catégorie :
         </label>
-        <p>Nom du produit : <!--<%= article.getNom() %>--></p>
-        <p>Description : <!--<%= article.getDescription() %>--></p>
-        <p>Catégorie : <!--<%= article.getCategorie() %>--></p>
-        <p>Meilleure offre : <!--<%= article.getMeilleureOffre() %>--> €</p>
-        <p>Mise à prix : <!--<%= article.getMiseAPrix() %>--> €</p>
-        <p>Fin de l'enchère : <!--<%= article.getDateFinEnchere() %>--></p>
-        <p>Retrait : <!--<%= article.getRetrait() %>--></p>
-        <p>Vendeur : <!--<%= article.getUtilisateur().getPseudo() %>--></p>
+        
     </div>
     <form method="post">
         <div class="form-group">

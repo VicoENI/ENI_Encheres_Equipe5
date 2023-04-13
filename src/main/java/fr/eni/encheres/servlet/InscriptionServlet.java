@@ -1,12 +1,7 @@
 package fr.eni.encheres.servlet;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Base64;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dal.jdbc.JdbcTools;
 import fr.eni.encheres.exceptions.BLLException;
 import fr.eni.encheres.exceptions.DALException;
 import fr.eni.encheres.utils.PasswordManager;
@@ -41,7 +35,7 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/jsp/CreerCompte.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/inscription.jsp").forward(request, response);
 	}
 
 	/**
@@ -94,6 +88,7 @@ public class InscriptionServlet extends HttpServlet {
 		{
 			request.setAttribute("errorMessage", "Le mot de passe n'est pas identique");
 			doGet(request, response);
+			return;
 		}
 		
 		//TODO Les patterns des champs
@@ -101,18 +96,21 @@ public class InscriptionServlet extends HttpServlet {
 		{
 			request.setAttribute("errorMessage", "L'email n'est pas valide");
 			doGet(request, response);
+			return;
 		}
 		
 		if(!phone.isEmpty() && !Validator.isValidPhone(phone))
 		{
 			request.setAttribute("errorMessage", "Le téléphone n'est pas valide");
 			doGet(request, response);
+			return;
 		}
 		
 		if(!Validator.isValidZipcode(zipcode))
 		{
 			request.setAttribute("errorMessage", "Le code postal n'est pas valide");
 			doGet(request, response);
+			return;
 		}
 		
 		password = PasswordManager.hashPassword(password);
@@ -132,7 +130,7 @@ public class InscriptionServlet extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher("WEB-INF/jsp/PageConnexion.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/PageConnexion.jsp").forward(request, response);
 	}
 
 }

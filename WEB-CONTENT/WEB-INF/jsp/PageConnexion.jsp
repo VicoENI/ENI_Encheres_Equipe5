@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
     <div class="row">
@@ -10,7 +11,7 @@
         <form class="center" action="<%= request.getContextPath() %>/login" method="POST">
             <div class="col-12">
                 <label for="pseudo" class="form-label">Identifiant</label>
-                <input type="text" class="form-control" id="pseudo" name="pseudo">
+                <input type="text" class="form-control" id="identifiant" name="identifiant">
             </div>
             <div class="col-12">
                 <label for="password" class="form-label">Mot de passe</label>
@@ -24,6 +25,12 @@
                 <button type="submit" class="btn btn-primary" name="button" value="connexion">Connexion</button>
             </div>
         </form>
+        
+        <c:if test="${not empty errorMessage }">
+        	<div class="alert alert-danger">
+        	${errorMessage}
+        	</div>
+        </c:if>
     </div>
     <div class="row">
         <form action="<%= request.getContextPath() %>/inscription" method="get">

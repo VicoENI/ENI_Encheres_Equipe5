@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.jdbc.JdbcTools;
+import fr.eni.encheres.dal.ConnectionProvider;
 import fr.eni.encheres.dal.UtilisateurDAO;
 import fr.eni.encheres.exceptions.DALException;
 
@@ -50,7 +51,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
         Utilisateur utilisateur = null;
 
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.prepareStatement(GET_UTILISATEUR_BY_PSEUDO);
             statement.setString(1, pseudo);
             resultSet = statement.executeQuery();
@@ -88,7 +89,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     @Override
     public List<Utilisateur> getUtilisateurs() throws DALException, SQLException {
         List<Utilisateur> utilisateurs = new ArrayList<>();
-        Connection connection = JdbcTools.getConnection();
+        Connection connection = ConnectionProvider.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(GET_UTILISATEURS);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) 
@@ -121,7 +122,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     @Override
     public void addUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
     	
-    	Connection connection = JdbcTools.getConnection();
+    	Connection connection = ConnectionProvider.getConnection();
     	connection.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
     	
         try (PreparedStatement statement = connection.prepareStatement(ADD_UTILISATEUR)) {
@@ -149,7 +150,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
      */
     @Override
     public void updateUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
-    	Connection connection = JdbcTools.getConnection();
+    	Connection connection = ConnectionProvider.getConnection();
     	
         try (PreparedStatement statement = connection.prepareStatement(UPDATE_UTILISATEUR)) {
         	statement.setString(1, utilisateur.getPseudo());
@@ -179,7 +180,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             statement = connection.prepareStatement(DELETE_UTILISATEUR);
             statement.setInt(1, utilisateur.getNoUtilisateur());
             statement.executeUpdate();

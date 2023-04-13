@@ -51,7 +51,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
         try {
             // connexion à la base de données
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             // création de la requête
             statement = connection.prepareStatement(CREATE_ENCHERE);
             // remplacement des paramètres
@@ -112,7 +112,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
         PreparedStatement statement = null;
         try {
             // connexion à la base de données
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             // création de la requête
             statement = connection.prepareStatement(GET_ENCHERE_BY_NO_ARTICLE);
             // remplacement des paramètres
@@ -142,7 +142,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
         PreparedStatement statement = null;
         try {
             // connexion à la base de données
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             // création de la requête
             statement = connection.prepareStatement(UPDATE_ENCHERE);
             // remplacement des paramètres
@@ -174,7 +174,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
         PreparedStatement statement = null;
         try {
             // connexion à la base de données
-            connection = JdbcTools.getConnection();
+            connection = ConnectionProvider.getConnection();
             // création de la requête
             statement = connection.prepareStatement(DELETE_ENCHERE);
             // remplacement des paramètres
