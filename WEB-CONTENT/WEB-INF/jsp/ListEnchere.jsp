@@ -7,7 +7,13 @@
       <jsp:include page="../fragments/link.jsp" flush="true" />
     </div>
     <div class="col-6">
-      <a href="<%= request.getContextPath() %>/login" class="text-end">S'inscrire - Se connecter</a>
+      <c:if test="${empty utilisateur}">
+        <span class="text-end">
+          <a href="<%= request.getContextPath() %>/inscription">S'inscrire</a>
+           - 
+          <a href="<%= request.getContextPath() %>/login">Se connecter</a>
+        </span>
+      </c:if>
       <c:if test="${not empty utilisateur}">
 	      <nav class="navbar navbar-expand-lg">
 	            <div class="container-fluid">
@@ -34,7 +40,6 @@
 	            </div>
 	        </nav>
       </c:if>
-        
     </div>
   </div>
   <div class="row">
@@ -65,51 +70,53 @@
         </select>
       </div>
       <div class="col-6">
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Achats" value="Achats" checked>
-            <label class="form-check-label" for="Achats">Achats</label>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="achats_encheres_termines" id="achats_encheres_termines">
-              <label class="form-check-label" for="achats_encheres_termines">
-                enchères ouvertes
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="achats_encheres_cours" id="achats_encheres_cours">
-              <label class="form-check-label" for="achats_encheres_cours">
-                mes enchères en cours
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="achats_encheres_remportees" id="achats_encheres_remportees">
-              <label class="form-check-label" for="achats_encheres_remportees">
-                mes emchères remportées
-              </label>
-            </div>
-          </div>
+        <c:if test="${not empty utilisateur}">
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Ventes" value="Ventes">
-            <label class="form-check-label" for="Ventes">Mes ventes</label>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_cours" id="ventes_encheres_cours" disabled>
-              <label class="form-check-label" for="ventes_encheres_cours">
-                mes enchères en cours
-              </label>
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Achats" value="Achats" checked>
+              <label class="form-check-label" for="Achats">Achats</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="achats_encheres_termines" id="achats_encheres_termines">
+                <label class="form-check-label" for="achats_encheres_termines">
+                  enchères ouvertes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="achats_encheres_cours" id="achats_encheres_cours">
+                <label class="form-check-label" for="achats_encheres_cours">
+                  mes enchères en cours
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="achats_encheres_remportees" id="achats_encheres_remportees">
+                <label class="form-check-label" for="achats_encheres_remportees">
+                  mes emchères remportées
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_non_terminees" id="ventes_encheres_non_terminees" disabled>
-              <label class="form-check-label" for="ventes_encheres_non_terminees">
-                ventes non débutées
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_terminees" id="ventes_encheres_terminees" disabled>
-              <label class="form-check-label" for="ventes_encheres_terminees">
-                ventes terminées
-              </label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Ventes" value="Ventes">
+              <label class="form-check-label" for="Ventes">Mes ventes</label>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="ventes_encheres_cours" id="ventes_encheres_cours" disabled>
+                <label class="form-check-label" for="ventes_encheres_cours">
+                  mes enchères en cours
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="ventes_encheres_non_terminees" id="ventes_encheres_non_terminees" disabled>
+                <label class="form-check-label" for="ventes_encheres_non_terminees">
+                  ventes non débutées
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="ventes_encheres_terminees" id="ventes_encheres_terminees" disabled>
+                <label class="form-check-label" for="ventes_encheres_terminees">
+                  ventes terminées
+                </label>
+              </div>
             </div>
           </div>
-        </div>
+        </c:if>
         <div class="col-6">
           <div class="form-check form-check-inline">
             <input type="submit" class="btn btn-primary" value="Rechercher">
