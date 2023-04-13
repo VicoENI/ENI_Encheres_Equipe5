@@ -64,3 +64,32 @@ $(document).ready(function() {
     };
   }) 
 })
+$(document).ready(function() {
+  // Enregistrement de la fonction de gestion d'événement pour le changement de radio
+  $('input[name="inlineRadioOptions"]').on('change', function() {
+    var isChecked = $(this).is(':checked');
+    if (isChecked) {
+      // Désactiver les cases à cocher de l'autre radio
+      $('input[name="inlineRadioOptions"]').not(this).prop('checked', false);
+      if ($(this).val() === 'Achats') {
+        // Activer les cases à cocher de l'achat et désactiver celles de la vente
+        $('#defaultCheck1, #defaultCheck2, #defaultCheck3').prop('disabled', false);
+        $('#defaultCheck4, #defaultCheck5, #defaultCheck6').prop('checked', false).prop('disabled', true);
+      } else if ($(this).val() === 'Ventes') {
+        // Activer les cases à cocher de la vente et désactiver celles de l'achat
+        $('#defaultCheck4, #defaultCheck5, #defaultCheck6').prop('disabled', false);
+        $('#defaultCheck1, #defaultCheck2, #defaultCheck3').prop('checked', false).prop('disabled', true);
+      }
+    }
+  });
+  
+  // Désactiver les cases à cocher d'achats lorsque l'utilisateur coche le bouton radio de "Mes ventes"
+  $('#inlineRadio2').on('change', function() {
+    if ($(this).is(':checked')) {
+      $('#defaultCheck1, #defaultCheck2, #defaultCheck3').prop('checked', false).prop('disabled', true);
+    }
+  });
+  
+  // Activer toutes les cases à cocher au chargement de la page
+  $('#defaultCheck1, #defaultCheck2, #defaultCheck3, #defaultCheck4, #defaultCheck5, #defaultCheck6').prop('disabled', false);
+});

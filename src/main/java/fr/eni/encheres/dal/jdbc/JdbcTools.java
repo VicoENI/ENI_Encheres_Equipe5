@@ -42,4 +42,5 @@ public class JdbcTools {
         return connection;
     }
     
+    // TODO methode fermeture cnx et stmt
 }
