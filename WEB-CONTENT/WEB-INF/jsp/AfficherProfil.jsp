@@ -1,4 +1,9 @@
+<%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
+<%Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
+
 <jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
     <div class="row">
