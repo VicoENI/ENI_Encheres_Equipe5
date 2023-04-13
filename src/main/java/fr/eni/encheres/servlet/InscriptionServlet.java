@@ -35,7 +35,7 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/inscription.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/CreerCompte.jsp").forward(request, response);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class InscriptionServlet extends HttpServlet {
 		}
 		
 		
-		request.getRequestDispatcher("WEB-INF/PageConnexion.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/login");
 	}
 
 }

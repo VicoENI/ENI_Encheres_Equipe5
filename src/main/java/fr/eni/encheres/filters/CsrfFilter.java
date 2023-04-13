@@ -45,26 +45,22 @@ public class CsrfFilter implements Filter {
 		{
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             HttpSession session = httpRequest.getSession(false);
-            if (session != null)
+            if (session != null && httpRequest.getMethod().equalsIgnoreCase("POST"))
             {
-            	String method = httpRequest.getMethod();
-            	
-            	if(method.equalsIgnoreCase("POST"))
-            	{
-            		String csrfToken = (String) session.getAttribute("csrfToken");
-                    if (csrfToken == null) 
-                    {
-                        csrfToken = UUID.randomUUID().toString();
-                        session.setAttribute("csrfToken", csrfToken);
-                    }
-                    String requestCsrfToken = httpRequest.getParameter("csrf_token");
-                    if (requestCsrfToken == null || !requestCsrfToken.equals(csrfToken))
-                    {
-                        HttpServletResponse httpResponse = (HttpServletResponse) response;
-                        httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "Jeton CSRF invalide");
-                        return;
-                    }
-            	}                
+        		String csrfToken = (String) session.getAttribute("csrfToken");
+                if (csrfToken == null) 
+                {
+                    csrfToken = UUID.randomUUID().toString();
+                    session.setAttribute("csrfToken", csrfToken);
+                }
+                String requestCsrfToken = httpRequest.getParameter("csrf_token");
+                if (requestCsrfToken == null || !requestCsrfToken.equals(csrfToken))
+                {
+                    HttpServletResponse httpResponse = (HttpServletResponse) response;
+                    httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN, "Jeton CSRF invalide");
+                    return;
+                }
+                        
             }            
             else
             {
