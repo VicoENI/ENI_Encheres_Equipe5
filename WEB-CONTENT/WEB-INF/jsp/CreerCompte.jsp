@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
     <div class="row">
@@ -7,8 +8,12 @@
         </div>
 	 </div>
 	 <h2 class="text-center">Mon profil</h2>
+	 
+	 <c:if test="${not empty errorMessage}">
+	 	${errorMessage}
+	 </c:if>
       <form class="row g-3" action="" method="POST">
-		<input type="hidden" name="csrf_token" value="${sessionScope.csrfToken}" />
+		<input type="hidden" name="csrf_token" value="${csrfToken}" />
 		<div class="col-md-6">
 			<label for="pseudo" class="form-label">Pseudo *</label>
 			<input type="text" class="form-control" id="pseudo" name="pseudo" required>
