@@ -84,7 +84,7 @@ public class UtilisateurManager {
 	public void updateUtilisateur(Utilisateur utilisateur) throws BLLException, SQLException, DALException {
 		Utilisateur existingUtilisateur;
 		try {
-			existingUtilisateur = daoUtilisateurs.getUtilisateurByPseudo(utilisateur.getPseudo());
+			existingUtilisateur = daoUtilisateurs.getUtilisateurById(utilisateur.getNoUtilisateur());
 		} catch (Exception e) {
 			throw new BLLException("Echec selectById dans updateUtilisateur", e);
 		}

@@ -245,7 +245,13 @@ public class Utilisateur {
         this.motDePasse = motDePasse;
     }
     
-    @Override
+    
+    
+    public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Utilisateur [getNoUtilisateur()=");

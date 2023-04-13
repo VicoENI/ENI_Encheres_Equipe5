@@ -30,7 +30,7 @@
 	                    </ul>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="#">Mon Profil</a>
+	                    <a class="nav-link" href="<%= request.getContextPath() %>/ServletDispatcher?page=profil">Mon Profil</a>
 	                </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" href="<%= request.getContextPath() %>/logout">Deconnexion</a>

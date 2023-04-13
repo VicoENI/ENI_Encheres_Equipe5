@@ -21,6 +21,8 @@ public interface UtilisateurDAO {
      * @throws DALException
      */
     Utilisateur getUtilisateurByPseudo(String pseudo) throws SQLException, DALException;
+    
+    Utilisateur getUtilisateurById(int id) throws SQLException, DALException;
 
     /**
      * Get the Utilisateurs

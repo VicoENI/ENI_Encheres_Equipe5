@@ -106,6 +106,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             	String zipcode = resultSet.getString("code_postal");
             	
                 Utilisateur utilisateur  = new Utilisateur(lastName, firstName, email, password, pseudo, phone, credit, isAdmin, city, street, zipcode);
+                
+                utilisateur.setNoUtilisateur(resultSet.getInt("no_utilisateur"));
+                
                 utilisateurs.add(utilisateur);
             }
         }
@@ -199,4 +202,38 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             }
         }
     }
+    
+    private static final String GET_UTILISATEUR_BY_ID  = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
+	@Override
+	public Utilisateur getUtilisateurById(int id) throws SQLException, DALException 
+	{
+		Utilisateur utilisateur = null;
+		
+		try(Connection con = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(GET_UTILISATEUR_BY_ID))
+		{
+			pstmt.setInt(1, id);
+			ResultSet resultSet = pstmt.executeQuery();
+			
+			if(resultSet.next())
+			{
+				String lastName = resultSet.getString("nom");
+            	String firstName = resultSet.getString("prenom");
+            	String email = resultSet.getString("email");
+            	String password = resultSet.getString("mot_de_passe");
+            	String pseudo = resultSet.getString("pseudo");
+            	String phone = resultSet.getString("telephone");
+            	int credit = resultSet.getInt("credit");
+            	boolean isAdmin = resultSet.getBoolean("administrateur");
+            	String city = resultSet.getString("ville");
+            	String street = resultSet.getString("rue");
+            	String zipcode = resultSet.getString("code_postal");
+            	
+            	utilisateur  = new Utilisateur(lastName, firstName, email, password, pseudo, phone, credit, isAdmin, city, street, zipcode);
+			}
+		}
+		
+		return utilisateur;
+		
+	}
 }

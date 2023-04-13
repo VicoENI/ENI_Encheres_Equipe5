@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<%Utilisateur utilisateur = (Utilisateur)request.getAttribute("utilisateur"); %>
+<%Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur"); %>
 
 <jsp:include page="../fragments/header.jsp" flush="true" />
 <div class="container">
@@ -25,6 +25,7 @@
           <li class="list-group-item">Ville : <%= utilisateur.getVille() %></li>
         </ul>
       </div>
+      <a href="<%= request.getContextPath()%>/modification"><button>Modifier mon profil</button></a>
     </div>
 </div>
 
