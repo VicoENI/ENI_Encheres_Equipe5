@@ -71,7 +71,7 @@
       </div>
       <div class="col-6">
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Achats" value="Achats">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Achats" value="Achats" checked>
             <label class="form-check-label" for="Achats">Achats</label>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="achats_encheres_termines" id="achats_encheres_termines">
@@ -96,19 +96,19 @@
             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Ventes" value="Ventes">
             <label class="form-check-label" for="Ventes">Mes ventes</label>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_cours" id="ventes_encheres_cours">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_cours" id="ventes_encheres_cours" disabled>
               <label class="form-check-label" for="ventes_encheres_cours">
                 mes enchères en cours
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_non_terminees" id="ventes_encheres_non_terminees">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_non_terminees" id="ventes_encheres_non_terminees" disabled>
               <label class="form-check-label" for="ventes_encheres_non_terminees">
                 ventes non débutées
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="ventes_encheres_terminees" id="ventes_encheres_terminees">
+              <input class="form-check-input" type="checkbox" value="ventes_encheres_terminees" id="ventes_encheres_terminees" disabled>
               <label class="form-check-label" for="ventes_encheres_terminees">
                 ventes terminées
               </label>
