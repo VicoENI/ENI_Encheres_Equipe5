@@ -10,11 +10,11 @@
         <form class="center" action="<%= request.getContextPath() %>/login" method="POST">
             <div class="col-12">
                 <label for="pseudo" class="form-label">Identifiant</label>
-                <input type="text" class="form-control" id="pseudo">
+                <input type="text" class="form-control" id="pseudo" name="pseudo">
             </div>
             <div class="col-12">
                 <label for="password" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" id="password" name="password">
             </div>
             <!-- <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">

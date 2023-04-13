@@ -51,7 +51,7 @@
 		</div>
 		<div class="d-grid gap-5 d-md-flex justify-content-center">
 			<button type="submit" class="btn btn-primary">Enregistrer</button>
-			<button type="reset" class="btn btn-primary">Annuler la modification</button>
+			<button type="reset" class="btn btn-primary">Annuler la création</button>
 		  </div>
 	</form>
 </div>

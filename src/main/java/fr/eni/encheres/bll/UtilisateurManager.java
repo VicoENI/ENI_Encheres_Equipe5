@@ -106,7 +106,7 @@ public class UtilisateurManager {
 	 * @return Utilisateur
 	 * @throws Exception
 	 */
-	public Utilisateur getUtilisateurs(int index) {
+	public Utilisateur getUtilisateur(int index) {
 		return listUtilisateurs.get(index);
 	}
 	

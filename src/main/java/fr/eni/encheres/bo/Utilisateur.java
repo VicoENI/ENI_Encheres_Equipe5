@@ -39,7 +39,7 @@ public class Utilisateur {
 	 */
     public Utilisateur(String nom, String prenom, String email, String motDePasse, String pseudo, String telephone,int credit, boolean administrateur, String ville, String rue, String codePostal) {
         setNom(nom);
-        setNom(prenom);
+        setPrenom(prenom);
         setEmail(email);
         setMotDePasse(motDePasse);
         setPseudo(pseudo);
