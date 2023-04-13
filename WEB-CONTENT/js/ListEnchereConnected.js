@@ -23,7 +23,12 @@ $(document).ready(function() {
               function disableVenteChecks() {
               for (var i = 0; i < venteChecks.length; i++) {
                   venteChecks[i].prop("disabled", true);
-              } 
+              }
+              function disableAchatChecks() {
+                for (var i = 0; i < achatChecks.length; i++) {
+                  achatChecks[i].prop("disabled", true);
+              }
+            }
           }
         
           // Fonction pour activer toutes les cases à cocher
@@ -64,6 +69,7 @@ $(document).ready(function() {
     };
   }) 
 })
+/*
 $(document).ready(function() {
   // Enregistrement de la fonction de gestion d'événement pour le changement de radio
   $('input[name="inlineRadioOptions"]').on('change', function() {
@@ -92,4 +98,4 @@ $(document).ready(function() {
   
   // Activer toutes les cases à cocher au chargement de la page
   $('#defaultCheck1, #defaultCheck2, #defaultCheck3, #defaultCheck4, #defaultCheck5, #defaultCheck6').prop('disabled', false);
-});
+});*/s
