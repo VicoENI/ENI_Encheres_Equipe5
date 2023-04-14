@@ -8,7 +8,7 @@
     </div>
     <div class="col-6">
       <c:if test="${empty utilisateur}">
-        <span class="text-end">
+        <span class="float-end">
           <a href="<%= request.getContextPath() %>/inscription">S'inscrire</a>
            - 
           <a href="<%= request.getContextPath() %>/login">Se connecter</a>
